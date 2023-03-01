@@ -22,7 +22,7 @@ class Phonebook extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const {contacts} = this.state;
-    if (prevState.contacts.length !== contacts.length) {
+    if (prevState.contacts !== contacts) {
       localStorage.setItem('contacts', JSON.stringify(contacts))
     }
 
@@ -65,7 +65,7 @@ class Phonebook extends Component {
     const normalizedNumber = number.toLowerCase();
     const result = contacts.find(({ name, number }) => {
       return (
-        name.toLowerCase() === normalizedName &&
+        name.toLowerCase() === normalizedName ||
         number.toLowerCase() === normalizedNumber
       );
     });
